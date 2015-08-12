@@ -475,7 +475,7 @@ void NetworkService::reconnectServiceInterface()
     connect(m_service, SIGNAL(PropertyChanged(QString,QDBusVariant)),
             this, SLOT(updateProperty(QString,QDBusVariant)));
 
-    if (state().isEmpty() || m_path == QStringLiteral("/")) //saved services have an empty state and cached properties
+    if (state().isEmpty() || m_path == QString("/")) //saved services have an empty state and cached properties
         QTimer::singleShot(500,this,SIGNAL(propertiesReady()));
     else  {
         QDBusPendingReply<QVariantMap> reply = m_service->GetProperties();
